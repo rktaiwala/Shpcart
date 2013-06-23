@@ -9,7 +9,7 @@
 
 **Publish Assets**
 
-	```php artisan asset:publish vendor/package```
+	php artisan asset:publish vendor/package
 
 Now visit http://yoursite.com/shpcart and you should see the example products page.
 
