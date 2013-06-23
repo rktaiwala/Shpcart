@@ -262,5 +262,6 @@ This Exception is Thrown when an Item Price is invalid.
 
 ## Credits
 
-	<a href="https://github.com/brunogaspar">Bruno Gaspar</a>
+<a href="https://github.com/brunogaspar">Bruno Gaspar</a> for creating Cartify bundle.
+
 	Twitter for the awesome Bootstrap framework.
