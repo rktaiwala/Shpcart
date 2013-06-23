@@ -262,5 +262,5 @@ This Exception is Thrown when an Item Price is invalid.
 
 ## Credits
 
-	CodeIgniter for writing the Cart Library.
+	<a href="https://github.com/brunogaspar">Bruno Gaspar</a>
 	Twitter for the awesome Bootstrap framework.
