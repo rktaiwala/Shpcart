@@ -1,0 +1,29 @@
+{
+    "name": "madlymint/shpcart",
+    "description": "",
+    "authors": [
+        {
+            "name": "R K Taiwala",
+            "email": "rktaiwala@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+			"src/controllers",
+			"src/Models"
+			
+        ],
+		"files": [
+			"src/helper/FormatNumber.php"
+		],
+        "psr-0": {
+            "Madlymint\\Shpcart": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
