@@ -1,217 +1,266 @@
-Shpcart
-=======
+#Shpcart
+**Version: Beta**
 
-Version: Beta
+    A Shopping Cart Bundle for Laravel, based on the Cartify Bundle.
 
-A Shopping Cart Bundle for Laravel, based on the Cartify bundle .
-Installation
+##Installation
 
 
-Publish Assets
 
-php artisan asset:publish vendor/package
+**Publish Assets**
+
+	```php artisan asset:publish vendor/package```
+
 Now visit http://yoursite.com/shpcart and you should see the example products page.
 
-Adding items to the Cart
 
-Adding a single item to the Cart
 
+##Adding items to the Cart
+
+####Adding a single item to the Cart
 To add an item to the shopping cart, simply pass an array with the product information to the Shpcart::cart()->insert() method, as shown below:
-
+```php
 $item = array(
-    'id'      => 'sku_123ABC',
-    'qty'     => 1,
-    'price'   => 39.95,
-    'name'    => 'T-Shirt',
-    'options' => array(
-        'size'  => 'L',
-        'color' => 'Red'
-    )
+	'id'      => 'sku_123ABC',
+	'qty'     => 1,
+	'price'   => 39.95,
+	'name'    => 'T-Shirt',
+	'options' => array(
+		'size'  => 'L',
+		'color' => 'Red'
+	)
 );
 
 Shpcart::cart()->insert($item);
-Adding multiple items to the Cart
+```
 
-By using a multi-dimensional array, as shown below, it is possible to add multiple items to the cart in one action. This is useful in cases where you wish to allow people to select from among several items on the same page.
-
+####Adding multiple items to the Cart
+By using a multi-dimensional array, as shown below, it is possible to add multiple items to the cart in one action.
+This is useful in cases where you wish to allow people to select from among several items on the same page.
+```php
 $items = array(
-    array(
-        'id'      => 'sku_123ABC',
-        'qty'     => 1,
-        'price'   => 39.95,
-        'name'    => 'T-Shirt',
-        'options' => array(
-            'size'  => 'L',
-            'color' => 'Red'
-        )
-    ),
-    array(
-        'id'    => 'sku_567ZYX',
-        'qty'   => 1,
-        'price' => 9.95,
-        'name'  => 'Coffee Mug'
-    ),
-    array(
-        'id'    => 'sku_965QRS',
-        'qty'   => 1,
-        'price' => 29.95,
-        'name'  => 'Shot Glass'
-    )
+	array(
+		'id'      => 'sku_123ABC',
+		'qty'     => 1,
+		'price'   => 39.95,
+		'name'    => 'T-Shirt',
+		'options' => array(
+			'size'  => 'L',
+			'color' => 'Red'
+		)
+	),
+	array(
+		'id'    => 'sku_567ZYX',
+		'qty'   => 1,
+		'price' => 9.95,
+		'name'  => 'Coffee Mug'
+	),
+	array(
+		'id'    => 'sku_965QRS',
+		'qty'   => 1,
+		'price' => 29.95,
+		'name'  => 'Shot Glass'
+	)
 );
 
 Shpcart::cart()->insert($items);
-Important:
+```
 
-The first four array indexes above (id, qty, price, and name) are required.
-If you omit any of them the data will not be saved to the cart.
-The fifth index (options) is optional.
-It is intended to be used in cases where your product has options associated with it.
-Use an array for options, as shown above.
-The five reserved indexes are:
+####Important:
+	The first four array indexes above (id, qty, price, and name) are required.
+	If you omit any of them the data will not be saved to the cart.
+	The fifth index (options) is optional.
+	It is intended to be used in cases where your product has options associated with it.
+	Use an array for options, as shown above.
 
-id - Each product in your store must have a unique identifier. Typically this will be an "sku" or other such identifier.
-qty - The quantity being purchased.
-price - The price of the item.
-name - The name of the item.
-options - Any additional attributes that are needed to identify the product. These must be passed via an array.
-In addition to the five indexes above, there are two reserved words: rowid and subtotal. These are used internally by the Cart class, so please do NOT use those words as index names when inserting data into the cart.
+**The five reserved indexes are:**
+- **id** - Each product in your store must have a unique identifier. Typically this will be an "sku" or other such identifier.
+- **qty** - The quantity being purchased.
+- **price** - The price of the item.
+- **name** - The name of the item.
+- **options** - Any additional attributes that are needed to identify the product. These must be passed via an array.
+
+In addition to the five indexes above, there are two reserved words: **rowid** and **subtotal**. These are used internally by the Cart class, so please do NOT use those words as index names when inserting data into the cart.
 
 Your array may contain additional data. Anything you include in your array will be stored in the session. However, it is best to standardize your data among all your products in order to make displaying the information in a table easier.
 
 The insert() method will return the $rowid if you successfully insert a single item.
 
-Updating Cart items
 
+
+##Updating Cart items
 To update the information in your cart, you must pass an array containing the Row ID and quantity to the Shpcart::cart()->update() method:
 
-Note:
-
+####Note:
 If the quantity is set to zero, the item will be removed from the cart!
 
-Updating a single item:
-
+####Updating a single item:
+```php
 $item = array(
-    'rowid'   => 'b99ccdf16028f015540f341130b6d8ec',
-    'qty'     => 3,
-    'options' => array(
-        'size'  => 'M',
-        'color' => 'Red'
-    )
+	'rowid'   => 'b99ccdf16028f015540f341130b6d8ec',
+	'qty'     => 3,
+	'options' => array(
+		'size'  => 'M',
+		'color' => 'Red'
+	)
 );
 
 Shpcart::cart()->update($item);
-Updating multiple items:
+```
 
+####Updating multiple items:
+```php
 $items = array(
-    array(
-        'rowid'   => 'b99ccdf16028f015540f341130b6d8ec',
-        'qty'     => 3,
-        'options' => array(
-            'size'  => 'M',
-            'color' => 'Red'
-        )
-    ),
-    array(
-        'rowid' => 'xw82g9q3r495893iajdh473990rikw23',
-        'qty'   => 4
-    ),
-    array(
-        'rowid'   => 'fh4kdkkkaoe30njgoe92rkdkkobec333',
-        'qty'     => 2,
-        'options' => array(
-            'color' => 'Yellow'
-        )
-    )
+	array(
+		'rowid'   => 'b99ccdf16028f015540f341130b6d8ec',
+		'qty'     => 3,
+		'options' => array(
+			'size'  => 'M',
+			'color' => 'Red'
+		)
+	),
+	array(
+		'rowid' => 'xw82g9q3r495893iajdh473990rikw23',
+		'qty'   => 4
+	),
+	array(
+		'rowid'   => 'fh4kdkkkaoe30njgoe92rkdkkobec333',
+		'qty'     => 2,
+		'options' => array(
+			'color' => 'Yellow'
+		)
+	)
 );
 
 Shpcart::cart()->update($items);
-What is a Row ID?
+```
 
+####What is a Row ID?
 The row ID is a unique identifier that is generated by the cart code when an item is added to the cart. The reason a unique ID is created is so that identical products with different options can be managed by the cart.
 
 For example, let's say someone buys two identical t-shirts (same product ID), but in different sizes. The product ID (and other attributes) will be identical for both sizes because it's the same shirt. The only difference will be the size. The cart must therefore have a means of identifying this difference so that the two sizes of shirts can be managed independently. It does so by creating a unique "row ID" based on the product ID and any options associated with it.
 
 In nearly all cases, updating the cart will be something the user does via the "view cart" page, so as a developer, it is unlikely that you will ever have to concern yourself with the "row ID", other then making sure your "view cart" page contains this information in a hidden form field, and making sure it gets passed to the update function when the update form is submitted. Please examine the construction of the "view cart" page below for more information.
 
-Removing items from the Cart
 
+
+##Removing items from the Cart
 To remove an item from your cart, you must pass the Row ID to the Shpcart::cart()->remove() method:
-
+```php
 Shpcart::cart()->remove('fh4kdkkkaoe30njgoe92rkdkkobec333');
-Displaying the Cart
+```
 
+
+##Displaying the Cart
 To display the cart you will create a view file with code similar to the one shown in cart.blade.php view file.
 
-Function Reference
 
+
+## Function Reference
+```php
 Shpcart::cart()->item(rowid)
+```
 Returns all the information about an item from the shopping cart.
 
+```php
 Shpcart::cart()->insert();
+```
 Permits you to add items to the shopping cart.
 
+```php
 Shpcart::cart()->update();
+```
 Permits you to update items in the shopping cart.
 
+```php
 Shpcart::cart()->remove(rowid);
+```
 Permits you to remove an item from the shopping cart.
 
+```php
 Shpcart::cart()->total();
+```
 Displays the total amount in the cart.
 
+```php
 Shpcart::cart()->total_items();
+```
 Displays the total number of items in the cart.
 
+```php
 Shpcart::cart()->contents();
+```
 Returns an array containing everything in the cart.
 
+```php
 Shpcart::cart()->has_options(rowid);
-Returns TRUE (boolean) if a particular row in the cart contains options. This function is designed to be used in a loop with Cartify::cart()->contents(), since you must pass the rowid to this function, as shown in the Displaying the Cart example above.
+```
+Returns TRUE (boolean) if a particular row in the cart contains options. This function is designed to be used in a loop with Shpcart::cart()->contents(), since you must pass the rowid to this function, as shown in the Displaying the Cart example above.
 
+```php
 Shpcart::cart()->item_options(rowid);
-Returns an array of options for a particular item. This function is designed to be used in a loop with Cartify::cart()->contents(), since you must pass the rowid to this function, as shown in the Displaying the Cart example above.
+```
+Returns an array of options for a particular item. This function is designed to be used in a loop with Shpcart::cart()->contents(), since you must pass the rowid to this function, as shown in the Displaying the Cart example above.
 
+```php
 Shpcart::cart()->destroy();
+```
 Permits you to destroy the cart. This function will likely be called when you are finished processing the customer's order.
 
-Multiple instances of the Cart
 
+## Multiple instances of the Cart
 It is possible to have multiple instances of the cart class.
 
 You just need to pass in the name of the cart like so:
-
+```php
 Shpcart::cart('my_other_cart')->insert($item);
-It is included an Whishlist method to help you, and you can even create multiple wishlist's aswell, like so:
+```
 
+It is included an Whishlist method to help you, and you can even create multiple wishlist's aswell, like so:
+```php
 Shpcart::wishlist()->insert($item);
 Shpcart::wishlist('my_other_wishlist')->insert($item);
-Exceptions
+```
+
+
+
+##Exceptions
 
 Some methods on the Cart library throws Exceptions, below you have a list of all the Exceptions.
 
-Shpcart\CartException
+	Shpcart\CartException
+
 This Exception is Thrown when an unexpected error occurred.
 
-Shpcart\CartInvalidDataException
+	Shpcart\CartInvalidDataException
+
 This Exception is Thrown when an array is not passed when inserting or updating cart items.
 
-Shpcart\CartItemNotFoundException
+	Shpcart\CartItemNotFoundException
+
 This Exception is Thrown when an item is not found in the shopping cart.
 
-Shpcart\CartRequiredIndexException
+	Shpcart\CartRequiredIndexException
+
 This Exception is Thrown when a required index is missing from the array.
 
-Shpcart\CartInvalidItemRowIdException
+	Shpcart\CartInvalidItemRowIdException
+
 This Exception is Thrown when an Item Row ID is invalid.
 
-Shpcart\CartInvalidItemQuantityException
+	Shpcart\CartInvalidItemQuantityException
+
 This Exception is Thrown when the quantity is invalid.
 
-Shpcart\CartInvalidItemPriceException
+	Shpcart\CartInvalidItemPriceException
+
 This Exception is Thrown when an Item Price is invalid.
 
-To better understand on how to use the Exceptions, you can check the example controllers.
-Credits
+	To better understand on how to use the Exceptions, you can check the example controllers.
 
-brunogaspar for writing the Cartify bundle.
-Twitter for the awesome Bootstrap framework.
+
+
+## Credits
+
+	CodeIgniter for writing the Cart Library.
+	Twitter for the awesome Bootstrap framework.
