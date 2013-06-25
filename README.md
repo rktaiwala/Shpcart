@@ -13,6 +13,7 @@ Add ```'Madlymint\Shpcart\ShpcartServiceProvider'``` to the list of service prov
 
 **Step 3 (optional)**
 Add ```'Shpcart'  => 'Madlymint\Shpcart\Facades\Shpcart'``` to the list of class aliases in ```app/config/app.php```
+
 **Publish Assets**
 
 	php artisan asset:publish vendor/package
