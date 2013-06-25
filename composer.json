@@ -1,6 +1,7 @@
 {
     "name": "madlymint/shpcart",
-    "description": "",
+    "description": "Laravel 4 Shopping Cart package based on Cartify bundle",
+    "keywords": ["laravel 4", "shopping cart","laravel4"],
     "authors": [
         {
             "name": "R K Taiwala",
@@ -25,5 +26,12 @@
             "Madlymint\\Shpcart": "src/"
         }
     },
+    "extra": {
+		"component": "package",
+		"frameworks": [ "Laravel 4"],
+		"versions": {
+			"1": "master"
+
+		},
     "minimum-stability": "dev"
 }
