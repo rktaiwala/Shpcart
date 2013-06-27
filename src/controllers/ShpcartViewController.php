@@ -6,12 +6,12 @@
 
 
 /**
- * Libraries we can use.
+ * Libraries we use.
  */
 use Shpcart\Model\Products;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use \View;
+use \Input;
+use \Redirect;
 /**
  * The product information page.
  */
