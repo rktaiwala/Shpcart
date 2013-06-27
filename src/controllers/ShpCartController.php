@@ -9,9 +9,9 @@
  * Libraries we can use.
  */
 use Shpcart\Model\Products;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use \View;
+use \Input;
+use \Redirect;
 /**
  * The cart main page.
  */
