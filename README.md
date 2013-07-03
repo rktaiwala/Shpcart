@@ -1,7 +1,7 @@
 #Shpcart
 **Version: Beta**
 
-    A Shopping Cart Bundle for Laravel, based on the Cartify Bundle.
+    A Shopping Cart Package for Laravel, based on the Cartify Bundle.
 
 ##Installation
 
