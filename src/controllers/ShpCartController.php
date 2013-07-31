@@ -59,16 +59,17 @@ class ShpCartController extends \Illuminate\Routing\Controllers\Controller
 				// Get the items to be updated.
 				//
 				$items = array();
-				foreach(Input::get('items') as $rowid => $qty)
-				{
+				foreach(Input::get('items') as $rowid => $values)
+				{	
+					$options=array();
+					
 					$items[] = array(
 						'rowid' => $rowid,
-						'qty'   => $qty
+						'qty'   => $values['qty'],
+						'options'=>$values['options']
 					);
 				}
-
-				// Update the cart contents.
-				//
+				
 				Shpcart::cart()->update($items);
 			}
 
