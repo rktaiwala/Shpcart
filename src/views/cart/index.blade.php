@@ -34,13 +34,24 @@
 					<small>
 						<ul class="unstyled">
 						@foreach (Shpcart::cart()->item_options($item['rowid']) as $option_name => $option_value)
-							<li>- <small>{{ $option_name }}: {{ array_get($product_options, $option_name . '.' . $option_value) }}</small></li>
+							<li>- <small>{{ $option_name }}: {{  array_get($product_options, $option_name . '.' .$option_value) }}</small>
+							@foreach ($product_options as $option => $options)
+								@if($option==$option_name)
+								<div class="control-group">
+									
+									<div class="controls">
+										{{ Form::select('items['. $item['rowid'] .'][options]['.$option.']', $options, null, array('id' => 'options_' . $option.'_'.$item['rowid'])) }}
+									</div>
+								</div>
+								@endif
+							@endforeach	
+							</li>
 						@endforeach
 						</ul>
 					</small>
 					@endif
 				</td>
-				<td><input type="text" class="span1" value="{{ $item['qty'] }}" name="items[{{ $item['rowid'] }}]" /></td>
+				<td><input type="text" class="span1" value="{{ $item['qty'] }}" name="items[{{ $item['rowid'] }}][qty]" /></td>
 				<td>{{ format_number($item['price']) }}</td>
 				<td>{{ format_number($item['subtotal']) }}</td>
 			</tr>
