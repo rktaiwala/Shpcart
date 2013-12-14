@@ -16,7 +16,7 @@ Add ```'Shpcart'  => 'Madlymint\Shpcart\Facades\Shpcart'``` to the list of class
 
 **Publish Assets**
 
-	php artisan asset:publish vendor/package
+	php artisan asset:publish madlymint/shpcart
 
 Now visit http://yoursite.com/shpcart and you should see the example products page.
 
