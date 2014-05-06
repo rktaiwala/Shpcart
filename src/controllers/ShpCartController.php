@@ -15,7 +15,7 @@ use \Redirect;
 /**
  * The cart main page.
  */
-class ShpCartController extends \Illuminate\Routing\Controllers\Controller
+class ShpCartController extends \Illuminate\Routing\Controller
 {
 	/**
 	 * Flag for whether the controller is RESTful.
